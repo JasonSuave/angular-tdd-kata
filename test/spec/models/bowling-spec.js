@@ -1,4 +1,5 @@
 'use strict';
+
 describe("Game", function () {
     var game;
 
@@ -72,7 +73,7 @@ describe("Game", function () {
         game.roll(3); // 11
         game.roll(4);
         game.roll(2);
-        expect(game.score()).toBe(20)
+        expect(game.score()).toBe(20);
     });
 
     /*

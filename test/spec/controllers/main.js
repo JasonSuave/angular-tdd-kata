@@ -1,22 +1,32 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: BowlingController', function () {
 
-  // load the controller's module
-  beforeEach(module('angularBowlingApp'));
+    // load the controller's module
+    beforeEach(module('angularBowlingApp'));
 
-  var MainCtrl,
-    scope;
+    // Initialize the controller and a mock scope
+    beforeEach(inject(function ($controller, $rootScope) {
+        // Setup a Mock of our service / model
+        this.BowlingGameMock = {
+            roll: function(pins) {
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
-      $scope: scope
-    });
-  }));
+            }
+        };
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });
+        spyOn(this.BowlingGameMock, 'roll');
+
+        // Create the controller
+        this.scope = $rootScope.$new();
+        this.bowling_controller = $controller('BowlingController', {
+            $scope: this.scope,
+            game: this.BowlingGameMock
+        });
+    }));
+
+    it("can perform a roll", function()
+    {
+        this.scope.roll(1);
+        expect(this.BowlingGameMock.roll).toHaveBeenCalledWith(1);
+    })
 });

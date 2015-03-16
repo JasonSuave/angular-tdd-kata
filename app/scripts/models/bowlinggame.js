@@ -58,6 +58,11 @@ BowlingGame.prototype.isSpare = function(roll) {
     return this.pointsForRoll(roll) + this.pointsForNextRoll(roll) === 10;
 };
 
+BowlingGame.prototype.reset = function()
+{
+    this.game_points = 0;
+}
+
 
 angular.module('angularBowlingApp').factory('BowlingGame', function()
 {

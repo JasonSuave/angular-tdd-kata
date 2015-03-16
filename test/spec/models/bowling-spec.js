@@ -55,8 +55,7 @@ describe("Game", function () {
         expect(game.score()).toBe(300);
     });
 
-    it("can keep score of a game with a final strike", function()
-    {
+    it("can keep score of a game with a final strike", function () {
         rollMany(18, 0);
         game.roll(10); // 12
         game.roll(1);
@@ -66,8 +65,7 @@ describe("Game", function () {
         expect(game.score()).toBe(16);
     });
 
-    it("can keep score of a game with a final spare", function()
-    {
+    it("can keep score of a game with a final spare", function () {
         rollMany(18, 0);
         game.roll(7);
         game.roll(3); // 11
@@ -75,6 +73,13 @@ describe("Game", function () {
         game.roll(2);
         expect(game.score()).toBe(20);
     });
+
+    it("can reset the score", function () {
+        rollMany(3,4);
+        game.reset();
+        expect(game.score()).toBe(0);
+    });
+
 
     /*
      |--------------------------------------------------------------------------

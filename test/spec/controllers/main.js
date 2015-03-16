@@ -9,12 +9,12 @@ describe('Controller: BowlingController', function () {
     beforeEach(inject(function ($controller, $rootScope) {
         // Setup a Mock of our service / model
         this.BowlingGameMock = {
-            roll: function(pins) {
-
-            }
+            roll: function(pins) {},
+            reset: function(){}
         };
 
         spyOn(this.BowlingGameMock, 'roll');
+        spyOn(this.BowlingGameMock, 'reset');
 
         // Create the controller
         this.scope = $rootScope.$new();
@@ -28,5 +28,15 @@ describe('Controller: BowlingController', function () {
     {
         this.scope.roll(1);
         expect(this.BowlingGameMock.roll).toHaveBeenCalledWith(1);
-    })
+    });
+
+    it("can start a new game", function()
+    {
+        this.scope.roll(3);
+        this.scope.roll(6);
+        this.scope.newGame();
+        expect(this.BowlingGameMock.reset).toHaveBeenCalled();
+    });
+
+
 });
